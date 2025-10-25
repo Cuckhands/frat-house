@@ -2,7 +2,11 @@ extends CharacterBody3D
 
 @export var movement_speed: float = 1.0
 @export var detection_radius: float = 5.0
-@export var booze_hit: float = 5.0
+
+@export var booze_hit: float = 0.02
+@export var hit_range: float = 1.0
+
+var health: float = 100
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var player = $/root/TestWorld/Player
@@ -15,6 +19,15 @@ func _ready():
 
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
+
+func damage(health_loss: float):
+	health -= health_loss
+	if health <= 0:
+		print("zombie died")
+		# Secretly teleport it somewhere else
+		# TODO: choose a better (randomized) location
+		global_position = Vector3(0, 1.3, 0)
+		set_random_movement_target(20.0)
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -42,10 +55,10 @@ func _physics_process(delta):
 	var dist = distance_to_player()
 	if dist <= detection_radius:
 		set_movement_target(player.position)
-		if dist < 1:
-			# TODO: sober up 0.01 and stop hitting once per frame
+		if dist < hit_range:
+			# TODO: sober up 0.02 and stop hitting every frame
 			player.sober_up(0.0002)
-	
+
 	if navigation_agent.is_navigation_finished():
 		# Choose a new spot to wander to
 		set_random_movement_target(10.0)

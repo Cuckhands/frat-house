@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		drink_booze(0.02)
 	if Input.is_action_just_pressed("ui_page_down"):
 		sober_up(0.04)
-	print(bac)
+	#print(bac)
 	
 	neck_pivot.rotate_y(twist_input)
 	camera.rotate_x(pitch_input)
