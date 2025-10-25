@@ -1,11 +1,9 @@
 extends CharacterBody3D
 
-var movement_speed: float = 1
-var movement_target_position: Vector3 = Vector3(-3.0,0.0,2.0)
+@export var movement_speed: float = 1.0
+@export var detection_radius: float = 5.0
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-
-
 @onready var player = $/root/TestWorld/Player
 
 func _ready():
@@ -22,17 +20,31 @@ func actor_setup():
 	await get_tree().physics_frame
 
 	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(movement_target_position)
+	set_random_movement_target(20.0)
 
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
+func set_random_movement_target(max_distance: float):
+	var offset = Vector3(
+		randf_range(-max_distance, max_distance), 
+		0, 
+		randf_range(-max_distance, max_distance)
+	)
+	set_movement_target(global_position + offset)
+
+func close_to_player() -> bool:
+	var distance = global_position.distance_to(player.position)
+	return distance <= detection_radius
+
 func _physics_process(delta):
-	# Update target to players position
-	set_movement_target(player.position)
+	# Update target to players position when near
+	if close_to_player():
+		set_movement_target(player.position)
 	
 	if navigation_agent.is_navigation_finished():
-		print("Got em")
+		# Choose a new spot to wander to
+		set_random_movement_target(10.0)
 		return
 
 	var current_agent_position: Vector3 = global_position
