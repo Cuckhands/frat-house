@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var movement_speed: float = 1.0
 @export var detection_radius: float = 5.0
+@export var booze_hit: float = 5.0
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var player = $/root/TestWorld/Player
@@ -10,7 +11,7 @@ func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
 	navigation_agent.path_desired_distance = 0.5
-	navigation_agent.target_desired_distance = 0.5
+	navigation_agent.target_desired_distance = 1.0
 
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
@@ -33,14 +34,17 @@ func set_random_movement_target(max_distance: float):
 	)
 	set_movement_target(global_position + offset)
 
-func close_to_player() -> bool:
-	var distance = global_position.distance_to(player.position)
-	return distance <= detection_radius
+func distance_to_player() -> float:
+	return global_position.distance_to(player.position)
 
 func _physics_process(delta):
-	# Update target to players position when near
-	if close_to_player():
+	# Update target to player's position when near
+	var dist = distance_to_player()
+	if dist <= detection_radius:
 		set_movement_target(player.position)
+		if dist < 1:
+			# TODO: sober up 0.01 and stop hitting once per frame
+			player.sober_up(0.0002)
 	
 	if navigation_agent.is_navigation_finished():
 		# Choose a new spot to wander to

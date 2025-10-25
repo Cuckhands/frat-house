@@ -4,6 +4,8 @@ extends RigidBody3D
 @onready var camera: Camera3D = $NeckPivot/Camera3D
 
 @export var mouse_sens: float = 0.001
+# Gives roughly 20 seconds
+@export var sober_rate: float = 0.002
 var bac: float = 0.04
 const MAX_BAC: float = 0.21
 const MOVE_FORCE: float = 1000.0
@@ -28,15 +30,18 @@ func _process(delta: float) -> void:
 	# DEBUG PURPOSES
 	if Input.is_action_just_pressed("ui_page_up"):
 		drink_booze(0.02)
-	
 	if Input.is_action_just_pressed("ui_page_down"):
 		sober_up(0.04)
+	print(bac)
 	
 	neck_pivot.rotate_y(twist_input)
 	camera.rotate_x(pitch_input)
 	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	twist_input = 0.0
 	pitch_input = 0.0
+	
+	# BAC goes down on its own
+	sober_up(delta * sober_rate)
 
 # Fill up
 func drink_booze(bac_gain: float):
