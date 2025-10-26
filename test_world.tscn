@@ -41,6 +41,7 @@ collision_mask = 7
 shape = SubResource("ConcavePolygonShape3D_35p4s")
 
 [node name="Player" parent="." instance=ExtResource("1_dxppu")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06806469, 1.2874312, 1.3590293)
 
 [node name="SmartZombie" parent="." instance=ExtResource("2_gy3sr")]

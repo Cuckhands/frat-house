@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgcm5wspxegx4"]
+[gd_scene load_steps=14 format=3 uid="uid://cgcm5wspxegx4"]
 
 [ext_resource type="Script" uid="uid://cuywqhrrm23fx" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://bmfmy216qlk86" path="res://hud.tscn" id="2_onrkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_aevu8"]
 
@@ -171,7 +172,7 @@ _data = {
 &"right_hook_return": SubResource("Animation_onrkg")
 }
 
-[node name="Player" type="RigidBody3D"]
+[node name="Player" type="RigidBody3D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
 lock_rotation = true
@@ -190,7 +191,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 [node name="Camera3D" type="Camera3D" parent="NeckPivot"]
 
 [node name="Hitbox" type="Area3D" parent="NeckPivot/Camera3D"]
-collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeckPivot/Camera3D/Hitbox"]
@@ -215,3 +215,6 @@ mesh = SubResource("SphereMesh_onrkg")
 libraries = {
 &"": SubResource("AnimationLibrary_2hs0m")
 }
+
+[node name="HUD" parent="." instance=ExtResource("2_onrkg")]
+mouse_filter = 2

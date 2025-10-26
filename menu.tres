@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://wcagtjjw7sli"]
+
+[ext_resource type="FontFile" uid="uid://cjxeg2l5higpo" path="res://DoubleFeature-BLlwd.ttf" id="1_bsmre"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsmre"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3icr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77h70"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlhde"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sodv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6gbjh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yfpq"]
+bg_color = Color(0.76, 0.5732933, 0.25079998, 1)
+
+[resource]
+default_font_size = 24
+Button/colors/font_color = Color(0.81960785, 0.81960785, 0.81960785, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.49803922, 0.11372549, 0.11372549, 1)
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 52
+Button/fonts/font = ExtResource("1_bsmre")
+Button/styles/disabled = SubResource("StyleBoxEmpty_bsmre")
+Button/styles/focus = SubResource("StyleBoxEmpty_y3icr")
+Button/styles/hover = SubResource("StyleBoxEmpty_77h70")
+Button/styles/normal = SubResource("StyleBoxEmpty_hlhde")
+Button/styles/pressed = SubResource("StyleBoxEmpty_5sodv")
+Label/colors/font_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+Label/colors/font_outline_color = Color(0.51, 0.11730001, 0.11730001, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 10
+Label/constants/shadow_offset_x = -14
+Label/constants/shadow_offset_y = -8
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 80
+Label/fonts/font = ExtResource("1_bsmre")
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_6gbjh")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_1yfpq")
