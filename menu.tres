@@ -15,7 +15,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6gbjh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yfpq"]
-bg_color = Color(0.76, 0.5732933, 0.25079998, 1)
+bg_color = Color(0.76, 0.5732933, 0.25079998, 0.57254905)
 
 [resource]
 default_font_size = 24

@@ -5,7 +5,9 @@ extends RigidBody3D
 @onready var melee_anim: AnimationPlayer = $AnimationPlayer
 @onready var hitbox: Area3D = $NeckPivot/Camera3D/Hitbox
 @onready var hud: Control = $HUD
+@onready var jump_timer: Timer = $JumpTimer
 
+@export var jump_force: float = 150.0
 @export var mouse_sens: float = 0.001
 # Gives roughly 20 seconds
 @export var sober_rate: float = 0.002
@@ -28,6 +30,10 @@ func _process(delta: float) -> void:
 	apply_central_force(neck_pivot.basis * input.normalized() * delta *
 		(MOVE_FORCE * 1.5 if Input.is_action_pressed("sprint") else MOVE_FORCE))
 	
+	if Input.is_action_just_pressed("jump") and jump_timer.is_stopped():
+		apply_central_force(Vector3.UP * jump_force)
+		jump_timer.start()
+	
 	handle_melee()
 	
 	# DEBUG PURPOSES
@@ -36,6 +42,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_page_down"):
 		sober_up(0.04)
 	
+	# Controls camera motion
 	neck_pivot.rotate_y(twist_input)
 	camera.rotate_x(pitch_input)
 	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
@@ -59,6 +66,7 @@ func sober_up(bac_loss: float):
 		bac = 0
 
 func handle_melee() -> void:
+	# Left Hook if possible
 	if Input.is_action_just_pressed("attack_l"):
 		if not melee_anim.is_playing():
 			melee_anim.play("left_hook")
@@ -66,6 +74,8 @@ func handle_melee() -> void:
 		elif melee_anim.current_animation == "right_hook_return":
 			melee_anim.queue("left_hook")
 			melee_anim.queue("left_hook_return")
+	
+	# Right Hook if possible
 	if Input.is_action_just_pressed("attack_r"):
 		if not melee_anim.is_playing():
 			melee_anim.play("right_hook")
@@ -73,6 +83,8 @@ func handle_melee() -> void:
 		elif melee_anim.current_animation == "left_hook_return":
 			melee_anim.queue("right_hook")
 			melee_anim.queue("right_hook_return")
+	
+	# Deal damage and/or pick up alcohol
 	if (melee_anim.current_animation == "left_hook"
 	or melee_anim.current_animation == "right_hook"):
 		for body in hitbox.get_overlapping_bodies():
@@ -82,6 +94,7 @@ func handle_melee() -> void:
 				drink_booze(body.get_amount())
 				body.queue_free()
 
+# Accepts mouse movement to change 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
