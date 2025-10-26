@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dskfjah5cacgd"]
+[gd_scene load_steps=9 format=3 uid="uid://dskfjah5cacgd"]
 
 [ext_resource type="PackedScene" uid="uid://cgcm5wspxegx4" path="res://player.tscn" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://cmntqolbt7bsf" path="res://smart_zombie.tscn" id="2_gy3sr"]
@@ -16,6 +16,10 @@ sky = SubResource("Sky_5bm61")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_gy3sr"]
+vertices = PackedVector3Array(-4.5, 0.5, -4.5, -4.5, 0.5, 4.5, 4.5, 0.5, 4.5, 4.5, 0.5, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_t2yo7"]
 size = Vector2(10, 10)
 
@@ -31,18 +35,21 @@ environment = SubResource("Environment_cmudl")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_t2yo7")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-collision_mask = 7
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_35p4s")
-
 [node name="Player" parent="." instance=ExtResource("1_dxppu")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06806469, 1.2874312, 1.3590293)
 
 [node name="SmartZombie" parent="." instance=ExtResource("2_gy3sr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.395, 1, -1.431)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_gy3sr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_t2yo7")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_35p4s")
