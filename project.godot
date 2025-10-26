@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Frat House"
-run/main_scene="uid://be4uwb05dvlfu"
+run/main_scene="uid://dou4evoqvhrlx"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
