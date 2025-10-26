@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	apply_central_force(neck_pivot.basis * input.normalized() * delta *
 		(MOVE_FORCE * 1.5 if Input.is_action_pressed("sprint") else MOVE_FORCE))
 	
-	melee()
+	handle_melee()
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -37,7 +37,6 @@ func _process(delta: float) -> void:
 		drink_booze(0.02)
 	if Input.is_action_just_pressed("ui_page_down"):
 		sober_up(0.04)
-	#print(bac)
 	
 	neck_pivot.rotate_y(twist_input)
 	camera.rotate_x(pitch_input)
@@ -58,9 +57,9 @@ func sober_up(bac_loss: float):
 	bac -= bac_loss
 	if bac <= 0:
 		bac = 0
-		print("dead")
+		print("Player dead")
 
-func melee() -> void:
+func handle_melee() -> void:
 	if Input.is_action_just_pressed("attack_l"):
 		if not melee_anim.is_playing():
 			melee_anim.play("left_hook")
@@ -76,7 +75,7 @@ func melee() -> void:
 			melee_anim.queue("right_hook")
 			melee_anim.queue("right_hook_return")
 	if (melee_anim.current_animation == "left_hook"
-		or melee_anim.current_animation == "right_hook"):
+	or melee_anim.current_animation == "right_hook"):
 		for body in hitbox.get_overlapping_bodies():
 			body.damage(attack_dmg)
 

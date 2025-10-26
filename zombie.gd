@@ -23,7 +23,5 @@ func _process(delta: float) -> void:
 	# Move constantly
 	apply_central_force(neck_pivot.basis * Vector3.FORWARD * delta * MOVE_FORCE)
 	
-	#neck_pivot.rotate_x(pitch_input)
-	#neck_pivot.rotation.x = clamp(neck_pivot.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	twist_input = 0.0
 	pitch_input = 0.0

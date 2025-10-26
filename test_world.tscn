@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dskfjah5cacgd"]
+[gd_scene load_steps=8 format=3 uid="uid://dskfjah5cacgd"]
 
 [ext_resource type="PackedScene" uid="uid://cgcm5wspxegx4" path="res://player.tscn" id="1_dxppu"]
+[ext_resource type="PackedScene" uid="uid://cmntqolbt7bsf" path="res://smart_zombie.tscn" id="2_gy3sr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q6ba4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -41,3 +42,6 @@ shape = SubResource("ConcavePolygonShape3D_35p4s")
 
 [node name="Player" parent="." instance=ExtResource("1_dxppu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06806469, 1.2874312, 1.3590293)
+
+[node name="SmartZombie" parent="." instance=ExtResource("2_gy3sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.395, 1, -1.431)
