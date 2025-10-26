@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var movement_speed: float = 1.0
-@export var detection_radius: float = 30.0
+@export var detection_radius: float = 20.0
 
 @export var booze_hit: float = 0.02
 @export var hit_range: float = 1.0
@@ -43,8 +43,7 @@ func actor_setup():
 	set_random_movement_target(20.0)
 
 func set_movement_target(movement_target: Vector3):
-	#navigation_agent.set_target_position(movement_target)
-	pass
+	navigation_agent.set_target_position(movement_target)
 
 func set_random_movement_target(max_distance: float):
 	var offset = Vector3(
