@@ -1,7 +1,7 @@
 extends Node
 
 @onready var main_menu: Control = $"Main Menu"
-@onready var test_world: Node3D = $TestWorld
+@onready var test_world: Node3D = $World
 @onready var main_menu_scn = preload("res://main_menu.tscn")
 
 func _process(delta: float) -> void:

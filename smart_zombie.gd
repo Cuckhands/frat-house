@@ -9,7 +9,7 @@ extends CharacterBody3D
 var health: float = 100.0
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var player = $/root/Game/TestWorld/Player
+@onready var player = $/root/Game/World/Player
 @onready var hurt_timer: Timer = $HurtTimer # Prevents hurt spam
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 var zb_tex: StandardMaterial3D = preload("res://zombie.tres")
@@ -43,7 +43,8 @@ func actor_setup():
 	set_random_movement_target(20.0)
 
 func set_movement_target(movement_target: Vector3):
-	navigation_agent.set_target_position(movement_target)
+	#navigation_agent.set_target_position(movement_target)
+	pass
 
 func set_random_movement_target(max_distance: float):
 	var offset = Vector3(
@@ -64,7 +65,6 @@ func _physics_process(delta):
 		if dist < hit_range:
 			# TODO: sober up 0.02 and stop hitting every frame
 			player.sober_up(0.02 * delta)
-			print(player.bac)
 
 	if navigation_agent.is_navigation_finished():
 		# Choose a new spot to wander to

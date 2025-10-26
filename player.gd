@@ -57,7 +57,6 @@ func sober_up(bac_loss: float):
 	bac -= bac_loss
 	if bac <= 0:
 		bac = 0
-		print("Player dead")
 
 func handle_melee() -> void:
 	if Input.is_action_just_pressed("attack_l"):
