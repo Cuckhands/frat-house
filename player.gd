@@ -37,10 +37,10 @@ func _process(delta: float) -> void:
 	handle_melee()
 	
 	# DEBUG PURPOSES
-	if Input.is_action_just_pressed("ui_page_up"):
-		drink_booze(0.02)
-	if Input.is_action_just_pressed("ui_page_down"):
-		sober_up(0.04)
+	#if Input.is_action_just_pressed("ui_page_up"):
+		#drink_booze(0.02)
+	#if Input.is_action_just_pressed("ui_page_down"):
+		#sober_up(0.04)
 	
 	# Controls camera motion
 	neck_pivot.rotate_y(twist_input)
