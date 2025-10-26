@@ -64,6 +64,7 @@ func sober_up(bac_loss: float):
 	bac -= bac_loss
 	if bac <= 0:
 		bac = 0
+		get_tree().reload_current_scene()
 
 func handle_melee() -> void:
 	# Left Hook if possible
