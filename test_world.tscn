@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dskfjah5cacgd"]
+[gd_scene load_steps=13 format=3 uid="uid://dskfjah5cacgd"]
 
 [ext_resource type="PackedScene" uid="uid://cgcm5wspxegx4" path="res://player.tscn" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://cmntqolbt7bsf" path="res://smart_zombie.tscn" id="2_gy3sr"]
+[ext_resource type="PackedScene" uid="uid://c6b818tw3sm4h" path="res://wine.tscn" id="3_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://1kek0wgbs1im" path="res://beer.tscn" id="4_lf0gk"]
+[ext_resource type="PackedScene" uid="uid://ddd0w3baji25p" path="res://rum.tscn" id="5_cnaw2"]
+[ext_resource type="PackedScene" uid="uid://c40bvq8yv5wxg" path="res://whiskey.tscn" id="6_cnaw2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q6ba4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -53,3 +57,15 @@ collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_35p4s")
+
+[node name="Wine" parent="." instance=ExtResource("3_1lwx6")]
+transform = Transform3D(0.745, 0, 0, 0, 0.745, 0, 0, 0, 0.745, -1.9915286, 0.596, -3.291007)
+
+[node name="Whiskey" parent="." instance=ExtResource("6_cnaw2")]
+transform = Transform3D(0.745, 0, 0, 0, 0.745, 0, 0, 0, 0.745, -3.653394, 0.374218, -0.8229594)
+
+[node name="Rum" parent="." instance=ExtResource("5_cnaw2")]
+transform = Transform3D(0.745, 0, 0, 0, 0.745, 0, 0, 0, 0.745, -3.4281428, 0.3725, -2.8119087)
+
+[node name="Beer" parent="." instance=ExtResource("4_lf0gk")]
+transform = Transform3D(0.745, 0, 0, 0, 0.745, 0, 0, 0, 0.745, -2.6052728, 0.37250024, -0.58760834)

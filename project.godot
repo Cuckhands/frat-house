@@ -19,10 +19,13 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=2
 
 [global_group]
 
 Zombie=""
+Player=""
+Alcohol=""
 
 [input]
 
@@ -77,3 +80,4 @@ attack_r={
 3d_physics/layer_1="world"
 3d_physics/layer_2="player"
 3d_physics/layer_3="enemy"
+3d_physics/layer_4="alcohol"

@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2gw6rv26lqrs"]
+[gd_scene load_steps=14 format=3 uid="uid://d2gw6rv26lqrs"]
 
 [ext_resource type="PackedScene" uid="uid://dclchaqs7qej6" path="res://FratHouse3.tscn" id="1_bayp7"]
 [ext_resource type="PackedScene" uid="uid://cgcm5wspxegx4" path="res://player.tscn" id="2_6dxwm"]
 [ext_resource type="PackedScene" uid="uid://cmntqolbt7bsf" path="res://smart_zombie.tscn" id="3_tev4g"]
 [ext_resource type="PackedScene" uid="uid://ckvhv3yiya6xd" path="res://default_light.tscn" id="4_8rpqt"]
+[ext_resource type="PackedScene" uid="uid://1kek0wgbs1im" path="res://beer.tscn" id="4_a024r"]
+[ext_resource type="PackedScene" uid="uid://c6b818tw3sm4h" path="res://wine.tscn" id="5_eglaa"]
+[ext_resource type="PackedScene" uid="uid://ddd0w3baji25p" path="res://rum.tscn" id="6_l1p4b"]
+[ext_resource type="PackedScene" uid="uid://c40bvq8yv5wxg" path="res://whiskey.tscn" id="7_ygty0"]
 
 [sub_resource type="Environment" id="Environment_hyxq2"]
 background_mode = 2
@@ -45,37 +49,59 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GroundMesh3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hyxq2")
 
-[node name="Player" parent="." instance=ExtResource("2_6dxwm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.967055, 1.000001, 5.204506)
-
-[node name="SmartZombie" parent="." instance=ExtResource("3_tev4g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1623893, 1.000001, 1.823412)
-
 [node name="Ceiling" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7262058, 3.032836, 0.48879457)
 mesh = SubResource("PlaneMesh_tev4g")
 
-[node name="DefaultLight" parent="." instance=ExtResource("4_8rpqt")]
+[node name="Alcohol" type="Node" parent="."]
+
+[node name="Beer" parent="Alcohol" instance=ExtResource("4_a024r")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -4.0910196, 0.993808, -3.9089465)
+
+[node name="Beer2" parent="Alcohol" instance=ExtResource("4_a024r")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -5.1668086, 0.99380815, -2.6832895)
+
+[node name="Wine" parent="Alcohol" instance=ExtResource("5_eglaa")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.0484357, 1.1198078, -5.790829)
+
+[node name="Beer3" parent="Alcohol" instance=ExtResource("4_a024r")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.17058402, 1.273341, 5.0564394)
+
+[node name="Rum" parent="Alcohol" instance=ExtResource("6_l1p4b")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 13.267635, 1.1889205, -4.4097595)
+
+[node name="Whiskey" parent="Alcohol" instance=ExtResource("7_ygty0")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 11.443029, 0.75073063, 2.201617)
+
+[node name="Whiskey2" parent="Alcohol" instance=ExtResource("7_ygty0")]
+transform = Transform3D(0.36112723, 0, 0.17200908, 0, 0.4, 0, -0.17200908, 0, 0.36112723, -6.2247753, 1.4897304, 4.6658454)
+
+[node name="Wine2" parent="Alcohol" instance=ExtResource("5_eglaa")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -4.798856, 0.32503876, 1.7722138)
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="DefaultLight" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.51474357, 2.9845848, 0)
 
-[node name="DefaultLight2" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight2" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.4337854, 2.9845848, -4.566041)
 
-[node name="DefaultLight3" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight3" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.4392245, 2.9845848, -4.3378806)
 
-[node name="DefaultLight4" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight4" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.7409673, 2.9845848, 3.6989257)
 
-[node name="DefaultLight5" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight5" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5.4943094, 2.9845848, 6.7427135)
 
-[node name="DefaultLight6" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight6" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.8581667, 2.9845848, -4.1916947)
 
-[node name="DefaultLight8" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight8" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(0.78351134, 0.032798655, 0.62051135, 0.031023175, -0.9994254, 0.01365455, 0.62060267, 0.008551737, -0.78407866, 9.3732195, 0.30229795, 4.6203666)
 light_energy = 0.338
 shadow_bias = 10.0
@@ -85,8 +111,8 @@ spot_attenuation = 0.58
 spot_angle = 20.81
 spot_angle_attenuation = 0.8122496
 
-[node name="DefaultLight9" parent="." instance=ExtResource("4_8rpqt")]
-transform = Transform3D(-0.84574866, -0.03352849, -0.532527, 0.031023173, -0.9994254, 0.013654548, -0.5326788, -0.004972364, 0.8463029, 9.176643, 0.15857661, 4.814085)
+[node name="DefaultLight9" parent="Lights" instance=ExtResource("4_8rpqt")]
+transform = Transform3D(-0.8457487, -0.033528488, -0.532527, 0.031023175, -0.9994254, 0.013654548, -0.53267884, -0.0049723624, 0.8463029, 9.176643, 0.15857661, 4.814085)
 light_energy = 0.338
 shadow_bias = 10.0
 shadow_blur = 2.69
@@ -95,23 +121,37 @@ spot_attenuation = 0.58
 spot_angle = 20.81
 spot_angle_attenuation = 0.8122496
 
-[node name="DefaultLight10" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight10" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.5179, 2.9845848, 5.9944706)
 
-[node name="DefaultLight11" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight11" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 11.701668, 2.9845848, -4.1916947)
 
-[node name="DefaultLight12" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight12" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.977682, 2.9845848, 1.9022002)
 
-[node name="DefaultLight13" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight13" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 10.219877, 2.9845848, 6.908005)
 
-[node name="DefaultLight14" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight14" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.869108, 2.9845848, -0.24470425)
 
-[node name="DefaultLight7" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight7" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.969152, 2.9845848, -0.16811204)
 
-[node name="DefaultLight15" parent="." instance=ExtResource("4_8rpqt")]
+[node name="DefaultLight15" parent="Lights" instance=ExtResource("4_8rpqt")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5.8858724, 2.9845848, 2.369145)
+
+[node name="Player" parent="." instance=ExtResource("2_6dxwm")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -2.017404, 1.000001, -6.557276)
+
+[node name="Zombies" type="Node" parent="."]
+
+[node name="SmartZombie" parent="Zombies" instance=ExtResource("3_tev4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1623893, 1.000001, 1.823412)
+
+[node name="SmartZombie2" parent="Zombies" instance=ExtResource("3_tev4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0779417, 1.0050387, -0.78178906)
+
+[node name="SmartZombie3" parent="Zombies" instance=ExtResource("3_tev4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.913893, 1.0050387, -4.6737204)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://c40bvq8yv5wxg"]
+
+[ext_resource type="Script" uid="uid://bfq28m7t8qkfu" path="res://whiskey.gd" id="1_8a4jp"]
+
+[sub_resource type="Curve" id="Curve_5w2hb"]
+_data = [Vector2(0.99999, 0.49156797), 0.0, 50774.25, 0, 1, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_ncksb"]
+radius = 0.122
+radial_steps = 10
+section_length = 0.04
+curve = SubResource("Curve_5w2hb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wx1mq"]
+albedo_color = Color(0.61960787, 0.44313726, 0.14117648, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8a4jp"]
+size = Vector3(0.575, 0.71, 0.24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5q0dw"]
+albedo_color = Color(0.62, 0.44495332, 0.14260001, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8a4jp"]
+points = PackedVector3Array(-0.2875, -0.355, -0.12, -0.2875, -0.355, 0.12000001, -0.2875, 0.35500005, -0.12, 0.2875, -0.355, -0.12, 0.2875, -0.355, 0.12000001, -0.2875, 0.35500005, 0.12000001, 0.2875, 0.35500005, -0.12, 0.2875, 0.35500005, 0.12000001)
+
+[node name="Whiskey" type="StaticBody3D" groups=["Alcohol"]]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_8a4jp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30454582, 0)
+mesh = SubResource("TubeTrailMesh_ncksb")
+surface_material_override/0 = SubResource("StandardMaterial3D_wx1mq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14730638, 0)
+mesh = SubResource("BoxMesh_8a4jp")
+surface_material_override/0 = SubResource("StandardMaterial3D_5q0dw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14730638, 0)
+shape = SubResource("ConvexPolygonShape3D_8a4jp")

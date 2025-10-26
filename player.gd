@@ -76,7 +76,11 @@ func handle_melee() -> void:
 	if (melee_anim.current_animation == "left_hook"
 	or melee_anim.current_animation == "right_hook"):
 		for body in hitbox.get_overlapping_bodies():
-			body.damage(attack_dmg)
+			if body.is_in_group("Zombie"):
+				body.damage(attack_dmg)
+			elif body.is_in_group("Alcohol"):
+				drink_booze(body.get_amount())
+				body.queue_free()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
