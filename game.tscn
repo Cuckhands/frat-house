@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dou4evoqvhrlx"]
+
+[ext_resource type="PackedScene" uid="uid://dskfjah5cacgd" path="res://test_world.tscn" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://cohbq0uv6knhs" path="res://game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://dxcfs2aldy1e8" path="res://main_menu.tscn" id="2_feb5d"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_feb5d")
+
+[node name="TestWorld" parent="." instance=ExtResource("1_e2o6t")]
+
+[node name="Main Menu" parent="." instance=ExtResource("2_feb5d")]

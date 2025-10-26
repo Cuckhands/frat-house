@@ -4,6 +4,7 @@ extends RigidBody3D
 @onready var camera: Camera3D = $NeckPivot/Camera3D
 @onready var melee_anim: AnimationPlayer = $AnimationPlayer
 @onready var hitbox: Area3D = $NeckPivot/Camera3D/Hitbox
+@onready var hud: Control = $HUD
 
 @export var mouse_sens: float = 0.001
 # Gives roughly 20 seconds
@@ -29,9 +30,6 @@ func _process(delta: float) -> void:
 	
 	handle_melee()
 	
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
 	# DEBUG PURPOSES
 	if Input.is_action_just_pressed("ui_page_up"):
 		drink_booze(0.02)
@@ -46,6 +44,8 @@ func _process(delta: float) -> void:
 	
 	# BAC goes down on its own
 	sober_up(delta * sober_rate)
+	
+	hud.update(bac + randf_range(-0.001, 0.001))
 
 # Fill up
 func drink_booze(bac_gain: float):

@@ -9,7 +9,7 @@ extends CharacterBody3D
 var health: float = 100.0
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var player = $/root/TestWorld/Player
+@onready var player = $/root/Game/TestWorld/Player
 @onready var hurt_timer: Timer = $HurtTimer # Prevents hurt spam
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 var zb_tex: StandardMaterial3D = preload("res://zombie.tres")
